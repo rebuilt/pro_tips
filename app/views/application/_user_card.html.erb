@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-start flex-wrap">
+    <h3 class="mr-3"><%= user.name %></h3>
+    <div>
+      <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-outline-secondary mr-3' %>
+      <%= link_to 'Delete', user_path(user), class: 'btn btn-outline-danger mr-3' %>
+    </div>
+  </div>
+  <% if user.avatar_url.present? %>
+    <%= image_tag user.avatar_url, class: 'card-img-top', alt: "Avatar for #{user.name}" %>
+  <% else %>
+    <%= image_tag default_avatar(user), class: 'card-img-top', alt: "Avatar for #{user.name}" %>
+  <% end %>
+  <div class="card-body">
+    <% if user.tips.any? %>
+      <p>Most recent tip: <%= link_to user.tips.last.title, tip_path(user.tips.last) %></p>
+    <% end %>
+    <p>Has created <%= pluralize_tips user.tips %> and made <%= pluralize_comments user.comments %></p>
+    <p class="text-muted">Joined Pro Tips on <%= user.created_at %></p>
+  </div>
+</div>

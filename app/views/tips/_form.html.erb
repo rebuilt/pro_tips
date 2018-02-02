@@ -1,0 +1,36 @@
+<%= form_for(tip, html: { class: 'col-lg-10 offset-lg-1' }) do |form| %>
+  <% if tip.errors.any? %>
+    <%= render partial: 'model_errors', locals: { model: tip } %>
+  <% end %>
+
+  <fieldset class="form-group row">
+    <%= form.label :title, class: 'col-md-2 col-form-label' %>
+    <div class="col-md-10">
+      <%= form.text_field :title, class: 'form-control' %>
+      <small class="form-text text-muted">Maximum 100 characters</small>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-group row">
+    <%= form.label :body, class: 'col-md-2 col-form-label' %>
+    <div class="col-md-10">
+      <%= form.text_area :body, class: 'form-control', rows: 7 %>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-group row">
+    <%= form.label 'User', for: 'tip_user_id', class: 'col-md-2 col-form-label' %>
+    <div class="col-md-10">
+      <%= form.collection_select(:user_id, User.all, :id, :name, {}, { class: 'form-control' }) %>
+    </div>
+  </fieldset>
+
+  <div class="form-group row d-flex flex-row-reverse">
+    <div class="col-md-10">
+      <%= form.submit class: 'btn btn-primary btn-block mb-2' %>
+    </div>
+    <div class="col-md-2">
+      <%= link_to 'Cancel', account_path, class: 'btn btn-light btn-block' %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<div class="mt-4 mb-4">
+  <ul class="nav nav-tabs nav-justified">
+    <li class="nav-item">
+      <%= link_to 'Account', account_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Tips', '#', class: 'nav-link active' %>
+    </li>
+  </ul>
+</div>
+<div class="row mt-4 mb-4">
+  <h1 class="col-12 text-center display-4">
+    Your tips
+  </h1>
+  <%= link_to 'New tip', new_tip_path, class: 'btn btn-outline-primary', role: 'button' %>
+</div>
+<div class="row">
+<% @tips.each do |tip| %>
+  <%= render partial: 'editable_tip_card', locals: { tip: tip } %>
+<% end %>
+</div>

@@ -1,0 +1,28 @@
+<p></p>
+
+<div class="jumbotron">
+  <h1 class="display-4">Share your programming tips with other developers online!</h1>
+  <hr class="my-4">
+  <p class="lead">... or find tips about something:</p>
+  <p class="lead">
+    <%= form_tag tips_path, method: :get do %>
+      <div class="form-row">
+        <div class="col-sm-9">
+          <%= label_tag :q, 'Search term', class: 'sr-only' %>
+          <%= text_field_tag :q, params[:q], class: 'form-control', placeholder: 'e.g. Ruby classes' %>
+        </div>
+        <div class="col-sm-2">
+          <%= submit_tag 'Search', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </p>
+</div>
+
+<h3>Here are the four most recently active tips:</h3>
+
+<div class="row">
+<% @tips.each do |tip| %>
+  <%= render partial: 'tip_card', locals: { tip: tip } %>
+<% end %>
+</div>

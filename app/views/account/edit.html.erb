@@ -1,0 +1,50 @@
+<div class="mt-4 mb-4">
+  <ul class="nav nav-tabs nav-justified">
+    <li class="nav-item">
+      <%= link_to 'Account', '#', class: 'nav-link active' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Tips', account_tips_path, class: 'nav-link' %>
+    </li>
+  </ul>
+</div>
+<div class="row mt-4 mb-4">
+  <h1 class="col-12 text-center display-4">Update your account</h1>
+</div>
+<div class="row">
+  <%= form_for(@user, html: { class: 'col-lg-10 offset-lg-1' }) do |form| %>
+    <% if @user.errors.any? %>
+      <%= render partial: 'model_errors', locals: { model: @user } %>
+    <% end %>
+
+    <div class="form-group row">
+      <%= form.label :email, class: 'col-md-2 col-form-label' %>
+      <div class="col-md-10">
+        <%= form.email_field :email, class: 'form-control', placeholder: 'e.g. me@epfl.ch' %>
+      </div>
+    </div>
+
+    <fieldset class="form-group row">
+      <%= form.label :name, class: 'col-md-2 col-form-label' %>
+      <div class="col-md-10">
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+    </fieldset>
+
+    <fieldset class="form-group row">
+      <%= form.label :avatar_url, class: 'col-md-2 col-form-label' %>
+      <div class="col-md-10">
+        <%= form.text_field :avatar_url, class: 'form-control' %>
+      </div>
+    </fieldset>
+
+    <fieldset class="form-group row d-flex flex-row-reverse">
+      <div class="col-md-10">
+        <%= form.submit 'Update', class: 'btn btn-primary btn-block mb-2' %>
+      </div>
+      <div class="col-md-2">
+        <%= link_to 'Cancel', user_path(@user), class: 'btn btn-light btn-block' %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>
