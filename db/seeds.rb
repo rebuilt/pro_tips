@@ -57,3 +57,26 @@ Tip.create!(title: 'Organize CSS rules in Sass files well',
 Tip.create!(title: 'Just experiment!',
             body:  "The great thing about writing software is that it's easy to try things out and change them before submitting it for a production deployment.  I've found that taking a break and coming back to a difficult programming problem really helps too.",
             user:  linda)
+
+tip1 = Tip.find_by(title: 'Just experiment!')
+tip2 = Tip.find_by(title: 'Organize CSS rules in Sass files well')
+
+comment = Comment.new(body: "Best tip!  This one helped me a lot")
+comment.tip = tip1
+comment.user = sara
+comment.save!
+
+comment = Comment.new(body: "I think I need more detail in order to understand this")
+comment.tip = tip1
+comment.user = florian
+comment.save!
+
+comment = Comment.new(body: "Can you provide a reference for further reading?")
+comment.tip = tip2
+comment.user = linda
+comment.save!
+
+comment = Comment.new(body: "I got it... I think I got it... yeah, I got it")
+comment.tip = tip2
+comment.user =  florian
+comment.save!
